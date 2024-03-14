@@ -1,0 +1,51 @@
+public class Clock {
+    private int hours;
+    private int minutes;
+    private int seconds;
+    private boolean isAM;
+
+    // Constructor to initialize the time and set to AM/PM mode
+    public Clock(int hours, int minutes, int seconds) {
+        setTime(hours, minutes, seconds);
+        setAMPM(hours);
+    }
+
+    // Method to set time and check validity of hours, minutes, and seconds
+    public void setTime(int hours, int minutes, int seconds) {
+        if (isValidTime(hours, minutes, seconds)) {
+            this.hours = hours;
+            this.minutes = minutes;
+            this.seconds = seconds;
+        } else {
+            System.out.println("Invalid time entered.");
+        }
+    }
+
+    // Method to check validity of time
+    private boolean isValidTime(int hours, int minutes, int seconds) {
+        return (hours >= 0 && hours < 24 && minutes >= 0 && minutes < 60 && seconds >= 0 && seconds < 60);
+    }
+
+    // Method to set AM/PM mode
+    private void setAMPM(int hours) {
+        isAM = (hours >= 0 && hours < 12);
+    }
+
+    // Method to get time in AM/PM format
+    public String getTime() {
+        return String.format("%02d:%02d:%02d %s", hours % 12, minutes, seconds, (isAM ? "AM" : "PM"));
+    }
+
+    // Main method for testing
+    public static void main(String[] args) {
+        // Creating a Clock object and initializing time
+        Clock clock = new Clock(11, 45, 30);
+
+        // Printing the time in AM/PM format
+        System.out.println("Current Time: " + clock.getTime());
+
+        // Testing setting time to invalid values
+        clock.setTime(25, 70, 90);
+        System.out.println("Invalid Time: " + clock.getTime());
+    }
+}
