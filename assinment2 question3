@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class ATMAmountCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Define the number of each type of bill in the ATM
+        int numOf1000s, numOf500s, numOf100s;
+        
+        // Input the counts of each type of bill
+        System.out.print("Enter the number of 1000s bills: ");
+        numOf1000s = scanner.nextInt();
+        
+        System.out.print("Enter the number of 500s bills: ");
+        numOf500s = scanner.nextInt();
+        
+        System.out.print("Enter the number of 100s bills: ");
+        numOf100s = scanner.nextInt();
+        
+        // Calculate the total amount
+        int totalAmount = numOf1000s * 1000 + numOf500s * 500 + numOf100s * 100;
+        
+        // Print the total amount
+        System.out.println("Total amount available in the ATM: $" + totalAmount);
+        
+        scanner.close();
+    }
+}
