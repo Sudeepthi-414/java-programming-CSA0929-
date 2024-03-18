@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class NumberSquareArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+        
+        int[] numberSquareArray = createNumberSquareArray(number);
+        
+        System.out.println("Array with the first element as the number and the second element as its square:");
+        System.out.println("[" + numberSquareArray[0] + ", " + numberSquareArray[1] + "]");
+    }
+
+    public static int[] createNumberSquareArray(int number) {
+        int[] array = new int[2];
+        array[0] = number;
+        array[1] = number * number;
+        return array;
+    }
+}
