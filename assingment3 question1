@@ -1,0 +1,30 @@
+import java.util.HashSet;
+
+public class UniquePermutations {
+    public static void main(String[] args) {
+        int number = 143;
+        System.out.println("Given Number: " + number);
+        System.out.println("Permutations are:");
+        printUniquePermutations(String.valueOf(number));
+    }
+
+    public static void printUniquePermutations(String str) {
+        printUniquePermutationsHelper("", str);
+    }
+
+    private static void printUniquePermutationsHelper(String prefix, String remaining) {
+        int n = remaining.length();
+        if (n == 0) {
+            System.out.println(prefix);
+        } else {
+            HashSet<Character> set = new HashSet<>();
+            for (int i = 0; i < n; i++) {
+                if (!set.contains(remaining.charAt(i))) {
+                    set.add(remaining.charAt(i));
+                    printUniquePermutationsHelper(prefix + remaining.charAt(i),
+                            remaining.substring(0, i) + remaining.substring(i + 1, n));
+                }
+            }
+        }
+    }
+}
