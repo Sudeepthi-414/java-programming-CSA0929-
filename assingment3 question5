@@ -1,0 +1,36 @@
+class Customer {
+    private int accountNo;
+    private String accName;
+    private int balance = 10000;
+
+    public Customer(int accountNo, String accName) {
+        this.accountNo = accountNo;
+        this.accName = accName;
+    }
+
+    public synchronized void deposit(int amount) {
+        balance += amount;
+        System.out.println("Deposit of " + amount + " successful. New balance: " + balance);
+        notify();
+    }
+
+    public synchronized void withdraw(int amount) {
+        if (amount > balance) {
+            try {
+                System.out.println("Insufficient balance. Waiting for deposit...");
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        balance -= amount;
+        System.out.println("Withdrawal of " + amount + " successful. New balance: " + balance);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Customer customer = new Customer(123456, "John Doe");
+
+        // Thread for withdrawal
+        Thread withdrawalThread = new Thread(()
