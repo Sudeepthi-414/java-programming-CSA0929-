@@ -1,0 +1,75 @@
+import java.util.Scanner;
+
+class BankAccount {
+    private String depositorName;
+    private int accountNumber;
+    private String accountType;
+    private double balance;
+
+    // Constructor to initialize the account with default values
+    public BankAccount() {
+        this.depositorName = "";
+        this.accountNumber = 0;
+        this.accountType = "";
+        this.balance = 10000.0;
+    }
+
+    // Method to read account details
+    public void readAccountDetails() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter account number: ");
+        this.accountNumber = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        System.out.print("Enter depositor name: ");
+        this.depositorName = scanner.nextLine();
+        System.out.print("Enter account type (Savings/Current): ");
+        this.accountType = scanner.nextLine();
+    }
+
+    // Method to deposit amount
+    public void deposit(double amount) {
+        if (amount > 0) {
+            this.balance += amount;
+            System.out.println("Deposit successful.");
+        } else {
+            System.out.println("Invalid deposit amount.");
+        }
+    }
+
+    // Method to withdraw amount
+    public void withdraw(double amount) {
+        if (amount > 0) {
+            double minBalance = 500.0;
+            if ((this.balance - amount) >= minBalance) {
+                this.balance -= amount;
+                System.out.println("Withdrawal successful.");
+            } else {
+                System.out.println("Insufficient balance. Withdrawal not possible.");
+            }
+        } else {
+            System.out.println("Invalid withdrawal amount.");
+        }
+    }
+
+    // Method to display balance
+    public void displayBalance() {
+        System.out.println("Account Number: " + this.accountNumber);
+        System.out.println("Depositor Name: " + this.depositorName);
+        System.out.println("Account Type: " + this.accountType);
+        System.out.println("Balance: Rs. " + this.balance);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount();
+        account.readAccountDetails();
+
+        // Sample deposit and withdrawal
+        account.deposit(1000);
+        account.withdraw(2000);
+
+        // Display balance
+        account.displayBalance();
+    }
+}
