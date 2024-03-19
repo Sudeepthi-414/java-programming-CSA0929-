@@ -1,0 +1,25 @@
+public class SumOfNNumbers {
+    public static void main(String[] args) {
+        int N = 5; // Change N to the desired number of elements
+        int[] numbers = {1, 2, 3, 4, 5}; // Example array of N numbers
+        
+        try {
+            int sum = findSum(numbers, N);
+            System.out.println("Sum of the first " + N + " numbers: " + sum);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array index out of bounds exception occurred: " + e.getMessage());
+        }
+    }
+    
+    public static int findSum(int[] arr, int N) {
+        int sum = 0;
+        for (int i = 0; i < N; i++) {
+            // Throw ArrayIndexOutOfBoundsException when the loop variable goes beyond the size N
+            if (i >= arr.length) {
+                throw new ArrayIndexOutOfBoundsException("Index " + i + " is out of bounds.");
+            }
+            sum += arr[i];
+        }
+        return sum;
+    }
+}
