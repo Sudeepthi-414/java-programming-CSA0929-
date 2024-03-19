@@ -1,0 +1,30 @@
+public class LastWordLength {
+    public static int lengthOfLastWord(String s) {
+        // Trim the input string to remove trailing spaces
+        s = s.trim();
+        
+        int length = 0;
+        // Iterate through the string from the end
+        for (int i = s.length() - 1; i >= 0; i--) {
+            // Check if the character is a space
+            if (s.charAt(i) == ' ') {
+                // If length is non-zero, then this is the end of the last word
+                if (length != 0) {
+                    break;
+                }
+            } else {
+                // Increment length if the character is not a space
+                length++;
+            }
+        }
+        return length;
+    }
+
+    public static void main(String[] args) {
+        // Test the function with some sample inputs
+        String[] testCases = {"Hello World", "   fly me   to   the moon  ", "luffy is still joyboy"};
+        for (String testCase : testCases) {
+            System.out.println("Length of last word in \"" + testCase + "\": " + lengthOfLastWord(testCase));
+        }
+    }
+}
